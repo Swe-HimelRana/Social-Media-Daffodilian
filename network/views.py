@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
+
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -99,7 +100,65 @@ def register(request):
 
 
 @login_required(login_url='/n/login')
+def change_full_name(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('fname')
+        last_name = request.POST.get('lname')
+
+        cuser = request.user
+
+        if first_name and last_name:
+            cuser.first_name = first_name
+            cuser.last_name = last_name
+            cuser.save()
+
+    return redirect('/' + request.user.username)
+
+
+@login_required(login_url='/n/login')
+def change_profile_photo(request):
+    if request.method == 'POST':
+        profile_photo = request.FILES.get('profilephoto')
+        if profile_photo is not None:
+            profile_user = request.user
+            profile_user.profile_pic = profile_photo
+            profile_user.save()
+
+    return redirect('/' + request.user.username)
+
+
+@login_required(login_url='/n/login')
+def change_cover_photo(request):
+    if request.method == 'POST':
+        cover_photo = request.FILES.get('coverphoto')
+        if cover_photo is not None:
+            cover_user = request.user
+            cover_user.cover = cover_photo
+            cover_user.save()
+
+    return redirect('/' + request.user.username)
+
+
+@login_required(login_url='/n/login')
 def profile(request, username):
+    if request.method == 'POST':
+        oldpass = request.POST.get('cpass').strip()
+        new_pass = request.POST.get('npass').strip()
+        confirm_new_pass = request.POST.get('ccpass').strip()
+
+        # Password Change
+        if oldpass and new_pass and new_pass == confirm_new_pass:
+            if request.user.check_password(oldpass):
+                change_pass_user = request.user
+                change_pass_user.set_password(new_pass)
+                change_pass_user.save()
+                print("New password saved")
+            else:
+                print("old password is not correct")
+
+        else:
+            print("required parameter not available")
+
     user = User.objects.get(username=username)
     all_posts = Post.objects.filter(creater=user).order_by('-date_created')
     paginator = Paginator(all_posts, 10)

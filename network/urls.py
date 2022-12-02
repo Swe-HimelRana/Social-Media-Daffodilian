@@ -25,7 +25,10 @@ urlpatterns = [
     path("n/post/<int:post_id>/delete", views.delete_post, name="deletepost"),
     path("<str:username>/follow", views.follow, name="followuser"),
     path("<str:username>/unfollow", views.unfollow, name="unfollowuser"),
-    path("n/post/<int:post_id>/edit", views.edit_post, name="editpost")
+    path("n/post/<int:post_id>/edit", views.edit_post, name="editpost"),
+    path("change_cover_photo/", views.change_cover_photo, name="change_cover_photo"),
+    path("change_profile_photo/", views.change_profile_photo, name="change_profile_photo"),
+    path("change_full_name/", views.change_full_name, name="change_full_name"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

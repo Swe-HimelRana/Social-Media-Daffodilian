@@ -4,25 +4,26 @@
 
 {% block profile %}
     <div class="profile-view" data-user="{{username.username}}">
+{#        <div class="cover-image" style="background-image: url(/media/{{username.cover}})">#}
         <div class="cover-image" style="background-image: url(/media/{{username.cover}})">
             {% if user.username == username.username %}
-            <button onclick="change_password('himel')" class="btn btn-sm btn-secondary m-3 float-right" href="#">Change Cover</button>
+            <button onclick="change_cover_photo()" class="btn btn-sm btn-secondary m-3 float-right" href="#">Change Cover</button>
             {% endif %}
         </div>
         <div class="profile-image" style="background-image: url(/media/{{username.profile_pic}})">
             {% if user.username == username.username %}
-            <a  class="float-right m-4" href="#">
+            <span onclick="change_profile_photo()" style="cursor: pointer;"  class="float-right m-4" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
-            </a>
+            </span>
             {% endif %}
         </div>
         <div class="profile-details">
             <div>
                 {% if user.username == username.username %}
-                    <a href="{% url 'editprofile'  username%}" class="btn btn-outline-success float-right" id="edit-profile-btn">Change Password</a>
+                    <button onclick="change_password()" class="btn btn-outline-success float-right" >Change Password</button>
                 {% elif is_follower %}
                     <button class="btn btn-success float-right" onclick="unfollow_user(this,'{{username.username}}','edit_page')" id="following-btn">Following</button>
                 {% else %}
@@ -33,25 +34,25 @@
                 <h5>{{username.first_name}} {{username.last_name}}
                 {#Name edit option#}
                     {% if user.username == username.username %}
-                    <a  class="" href="#">
+                    <span  onclick="change_full_name()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                           <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                         </svg>
-                    </a>
+                    </span>
                     {% endif %}
 
                 </h5>
                 <div class="grey">@{{username.username}}</div>
                 <div class="grey">+8801316100897
-                {% if user.username == username.username %}
-                    <a  class="" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                    </a>
-                    {% endif %}
+{#                {% if user.username == username.username %}#}
+{#                    <a  class="" href="#">#}
+{#                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">#}
+{#                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>#}
+{#                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>#}
+{#                        </svg>#}
+{#                    </a>#}
+{#                    {% endif %}#}
                 </div>
                 <div class="bio">
                     {% if username.bio is not None %}

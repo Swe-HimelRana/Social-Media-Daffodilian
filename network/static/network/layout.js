@@ -47,6 +47,43 @@ function createpost() {
     });
 }
 
+function change_full_name(){
+    let popup = document.querySelector('.popup');
+    popup.style.display = 'block';
+    popup.querySelector('.change-full-name').style.display = 'block';
+    document.querySelector('.body').setAttribute('aria-hidden', 'true');
+    document.querySelector('body').style.overflow = "hidden";
+}
+
+
+function change_cover_photo(){
+    let popup = document.querySelector('.popup');
+    popup.style.display = 'block';
+    popup.querySelector('.change-cover-photo').style.display = 'block';
+    document.querySelector('.body').setAttribute('aria-hidden', 'true');
+    document.querySelector('body').style.overflow = "hidden";
+}
+
+
+
+function change_profile_photo(){
+    let popup = document.querySelector('.popup');
+    popup.style.display = 'block';
+    popup.querySelector('.change-profile-photo').style.display = 'block';
+    document.querySelector('.body').setAttribute('aria-hidden', 'true');
+    document.querySelector('body').style.overflow = "hidden";
+}
+
+function change_password(){
+    let popup = document.querySelector('.popup');
+    popup.style.display = 'block';
+    popup.querySelector('.change-password-popup').style.display = 'block';
+    document.querySelector('.body').setAttribute('aria-hidden', 'true');
+    document.querySelector('body').style.overflow = "hidden";
+
+
+}
+
 
 function confirm_delete(id) {
     let popup = document.querySelector('.popup');
@@ -156,9 +193,16 @@ function remove_popup() {
     let small_popup = document.querySelector('.small-popup');
     let large_popup = document.querySelector('.large-popup');
     let login_popup = document.querySelector('.login-popup');
+    let change_password_popup = document.querySelector('.change-password-popup');
+    let change_cover_photo = document.querySelector('.change_cover_photo');
+    let change_profile_photo = document.querySelector('.change-profile-photo');
+    let change_full_name = document.querySelector('.change-full-name');
     small_popup.style.display = 'none';
     large_popup.style.display = 'none';
     login_popup.style.display = 'none';
+    change_password_popup.style.display = 'none';
+    change_profile_photo.style.display = 'none';
+    change_full_name.style.display = 'none';
     large_popup.querySelector('#post-text').value = '';
     large_popup.querySelector('#insert-img').value = '';
     large_popup.querySelector('#img-div').style.backgroundImage = '';

@@ -717,6 +717,75 @@ svg{
     animation-duration: .2s;
     animation-fill-mode: forwards;
 }
+.change-password-popup{
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 37%;
+    width: 23%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    padding: 25px 20px;
+    overflow: auto;
+    border-radius: 17px;
+    animation-name: small_popup;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+.change-cover-photo{
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 37%;
+    width: 23%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    padding: 25px 20px;
+    overflow: auto;
+    border-radius: 17px;
+    animation-name: small_popup;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+.change-full-name{
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 37%;
+    width: 23%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    padding: 25px 20px;
+    overflow: auto;
+    border-radius: 17px;
+    animation-name: small_popup;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+.change-profile-photo{
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 37%;
+    width: 23%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    padding: 25px 20px;
+    overflow: auto;
+    border-radius: 17px;
+    animation-name: small_popup;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+
 .large-popup{
     display: none;
     position: absolute;

@@ -13,7 +13,83 @@
     <body>
 
         <div class="popup">
+            {%  if user.is_authenticated %}
+            <div class="change-password-popup">
+                <div style="margin-bottom: 10px; font-size: 1.1em;"><strong>Change Password?</strong></div>
+                <form method="POST" action="{%  url 'profile' user.get_username %}">
+                    {% csrf_token %}
+                    <input type="password" class="form-control m-2" name="cpass" placeholder="current password">
+                    <input type="password" class="form-control m-2" name="npass" placeholder="New password">
+                    <input type="password" class="form-control m-2" name="ccpass" placeholder="Confirm new password">
 
+                    <div class="mt-2" style="padding: 0px 5%;">
+                        <button class="btn btn-light float-left" onclick="remove_popup()">Cancel</button>
+                        <button type="submit" class="btn btn-success float-right" id="change_password_btn">Save</button>
+                    </div>
+                </form>
+
+            </div>
+            {%  endif %}
+
+            {%  if user.is_authenticated %}
+                 <div class="change-full-name">
+                    <div style="margin-bottom: 10px; font-size: 1.1em;"><strong>Change your name?</strong></div>
+                    <form method="POST" action="{%  url 'change_full_name' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <input type="text" class="form-control m-2" name="fname" placeholder="First Name">
+                            <input type="text" class="form-control m-2" name="lname" placeholder="Last Name">
+                        <div class="mt-2" style="padding: 0px 5%;">
+                            <button class="btn btn-light float-left" onclick="remove_popup()">Cancel</button>
+                            <button type="submit" class="btn btn-success float-right" id="change_cover_photo_btn">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            {%  endif %}
+
+            {%  if user.is_authenticated %}
+                 <div class="change-profile-photo">
+                    <div style="margin-bottom: 10px; font-size: 1.1em;"><strong>Change Profile Picture?</strong></div>
+                    <form method="POST" action="{%  url 'change_profile_photo' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                         <div class="custom-file">
+                            <input type="file" name="profilephoto" class="form-control custom-file-input" accept="image/jpeg,image/png,image/webp,image/gif" data-focusable="true" aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="profile"><span style="color: #6c757d;">Choose Profile Picture<span></label>
+                            <span class="star small"></span>
+                        </div>
+
+
+                        <div class="mt-2" style="padding: 0px 5%;">
+                            <button class="btn btn-light float-left" onclick="remove_popup()">Cancel</button>
+                            <button type="submit" class="btn btn-success float-right" id="change_cover_photo_btn">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            {%  endif %}
+
+            {%  if user.is_authenticated %}
+            <div class="change-cover-photo">
+                <div style="margin-bottom: 10px; font-size: 1.1em;"><strong>Change Cover Photo?</strong></div>
+                <form method="POST" action="{%  url 'change_cover_photo' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                     <div class="custom-file">
+                        <input type="file" name="coverphoto" class="form-control custom-file-input" accept="image/jpeg,image/png,image/webp,image/gif" data-focusable="true" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="profile"><span style="color: #6c757d;">Choose Cover Photo<span></label>
+                        <span class="star small"></span>
+                    </div>
+
+
+                    <div class="mt-2" style="padding: 0px 5%;">
+                        <button class="btn btn-light float-left" onclick="remove_popup()">Cancel</button>
+                        <button type="submit" class="btn btn-success float-right" id="change_cover_photo_btn">Save</button>
+                    </div>
+                </form>
+
+                </div>
+            {%  endif %}
             <div class="small-popup">
                 <div style="margin-bottom: 10px; font-size: 1.1em;"><strong>Delete Post?</strong></div>
                 <div class="grey" style="font-size: .85em; margin-bottom: 15px;">
